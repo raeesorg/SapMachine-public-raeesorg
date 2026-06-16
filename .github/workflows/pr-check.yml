@@ -17,7 +17,7 @@
 # run on the PR head commit, then mirrors every individual job as a native
 # Check Run on the upstream PR — matching the appearance of the fork's own
 # checks tab. No submit branches are created; no CI is re-run upstream.
-name: 'Mirror Fork PR CI Results'
+name: 'Pre-submit tests'
 
 on:
   pull_request_target:
@@ -111,7 +111,7 @@ jobs:
                 CR_ID=$(gh api \
                   -X POST \
                   "repos/${UPSTREAM_REPO}/check-runs" \
-                  -f name="Fork CI / ${JOB_NAME}" \
+                  -f name="${JOB_NAME}" \
                   -f head_sha="${HEAD_SHA}" \
                   -f status="in_progress" \
                   -f output[title]="Waiting for fork job: ${JOB_NAME}" \
@@ -174,7 +174,7 @@ jobs:
                   CR_ID=$(gh api \
                     -X POST \
                     "repos/${UPSTREAM_REPO}/check-runs" \
-                    -f name="Fork CI / ${JOB_NAME}" \
+                    -f name="${JOB_NAME}" \
                     -f head_sha="${HEAD_SHA}" \
                     -f status="in_progress" \
                     -f output[title]="Waiting for fork job: ${JOB_NAME}" \

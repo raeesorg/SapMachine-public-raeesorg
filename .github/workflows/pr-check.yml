@@ -26,7 +26,7 @@ on:
       - synchronize
       - reopened
     branches:
-      - sapmachine
+      - sapmachine # the pr created against the main branch or also on other branches?
 
 permissions:
   checks: write
@@ -48,7 +48,7 @@ jobs:
         run: |
           # ── Phase 1: Wait for the fork workflow run to appear ───────────────
           # The fork may not have triggered its CI yet immediately after push.
-          MAX_WAIT=30
+          MAX_WAIT=20
           ATTEMPT=0
           RUN_ID=""
 
@@ -80,7 +80,7 @@ jobs:
           # job name → '1' once the check run has been finalized
           declare -A JOB_DONE
 
-          MAX_POLL=150
+          MAX_POLL=50
           POLL=0
           OVERALL_CONCLUSION=""
 

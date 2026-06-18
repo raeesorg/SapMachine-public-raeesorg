@@ -63,6 +63,7 @@ jobs:
   prepare:
     name: 'Prepare the run'
     # SapMachine 2022-06-23: On 'pull_request' we only want to run GHA if the PR comes from a remote repo. Otherwise we have the run on 'push' already as a check.
+    # add a check so internal pr runs too
     runs-on: ubuntu-24.04
     env:
       # List of platforms to exclude by default
